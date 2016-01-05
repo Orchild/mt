@@ -185,11 +185,16 @@ class testBehavior extends Behavior{
 		}
 	}
 	
+
 	public function testDev(){
 		
 	}
 	
 	public function test(){
+		
+	}
+
+	public function testFeature(){
 		
 	}
 	
