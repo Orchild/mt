@@ -1,0 +1,72 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+<script type="text/javascript">
+App.controller('buildController',function($scope,$http){
+	$scope.row 	= {};
+	$scope.build	= function(){
+		$scope.row.ajax = true;
+		$http.post('{:ROUTE("buildController")}',$scope.row).success(function(data){
+			if(data.code == 200){
+				$scope.error 	= data.msg+(data.result?'('+data.result+')':'');
+				$scope.row 		= {};
+			}else{
+				$scope.error 	= data.msg;
+			}
+		});
+	}
+});
+App.controller('buildModel',function($scope,$http){
+	$scope.row 	= {};
+	$scope.build	= function(){
+		$scope.row.ajax = true;
+		$http.post('{:ROUTE("buildModel")}',$scope.row).success(function(data){
+			if(data.code == 200){
+				$scope.error 	= data.msg+(data.result?'('+data.result+')':'');
+				$scope.row 		= {};
+			}else{
+				$scope.error 	= data.msg;
+			}
+		});
+	}
+});
+</script>
+</block>
+<block name="body">
+
+<?php if(C('ADD')){ ?>
+<assign name="id" value="lists" />
+<div class="node">
+	<div id="{$id}" class="node-tag">控制器和模型生成</div>
+	<div class="node form-horizontal item" ng-controller="buildController">
+		<div class="node-tag">生成控制器</div>
+		<div class="alert alert-danger" ng-show="error">
+	        <span class="glyphicon glyphicon-exclamation-sign"></span>
+	        <span class="sr-only">Error:</span>
+	        <span class="text">{{error}}</span>
+	    </div>
+	    <formitem label="控制器名称">
+	        <input class="form-control" type="text" ng-model="row.name" placeholder="请输入控制器名称" />
+	    </formitem>
+	    <formnode col="10" offset="3">
+            <button type="button" class="btn btn-primary col-md-3" ng-click="build()">生成</button>
+        </formnode>
+	</div>
+	<div class="node form-horizontal item" ng-controller="buildModel">
+		<div class="node-tag">生成模型</div>
+		<div class="alert alert-danger" ng-show="error">
+	        <span class="glyphicon glyphicon-exclamation-sign"></span>
+	        <span class="sr-only">Error:</span>
+	        <span class="text">{{error}}</span>
+	    </div>
+	    <formitem label="模型名称">
+	        <input class="form-control" type="text" ng-model="row.name" placeholder="请输入模型名称" />
+	    </formitem>
+	    <formnode col="10" offset="3">
+            <button type="button" class="btn btn-primary col-md-3" ng-click="build()">生成</button>
+        </formnode>
+	</div>
+</div>
+<?php } ?>
+</block>

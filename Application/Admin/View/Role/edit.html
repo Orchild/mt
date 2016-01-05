@@ -1,0 +1,14 @@
+<pane title="{{action}}角色" glyp="list">
+<ext-form cols="2,6" action="{:U(ACTION_NAME)}" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="角色名称" cols="2,3">
+        <ext-form-item-text name="name" empty="请输入角色名称" />
+    </ext-form-item>
+    <ext-form-item label="角色描述">
+        <ext-form-item-textarea name="remark" empty="请输入角色描述" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit col="2" text="保存" />
+        <button col="2" ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

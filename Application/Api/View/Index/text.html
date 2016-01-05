@@ -1,0 +1,76 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+<script type="text/javascript">
+App.controller('urlController',function($scope,$http){
+	$http.post('{:ROUTE('Text/lists')}').success(function(data){
+		if(data.code == 200){
+			$scope.items 	= data.result;
+			$scope.rows 	= [];
+			angular.forEach($scope.items, function(value){
+				$scope.rows.push(value.key);
+			});
+			$scope.row 		= $scope.rows[0];
+		}else{
+			alert(data.msg);
+		}
+	});
+});
+</script>
+</block>
+<block name="body">
+
+<div class="node">
+	<div class="node-tag">文本页API功能管理</div>
+	<div class="btn-group">
+		<a href="#details" class="btn btn-default">文本页详细接口</a>
+	</div>
+</div>
+
+<assign name="id" value="details" />
+<assign name="act" value="" />
+<div class="node" ng-controller="urlController">
+	<div id="{$id}" class="node-tag">文本页详细接口</div>
+	<div class="left">
+		<assign name="row" value="{{item.key}}" />
+		<div class="example">
+			<div ng-repeat="item in items">
+				<div class="col-md-2">{{item.name}}</div>
+				<div class="col-md-10">
+					<a href="{:URI_ROUTE($act.$row)}">{:URI_ROUTE($act.$row,true,true)}</a>
+				</div>
+			</div>
+		</div>
+		<assign name="row" value="{{row}}" />
+		<div class="example form-horizontal">
+	        <formitem label="名称">
+			    <select class="form-control"ng-model="row" ng-options="node.key as node.name for node in items">
+        		</select>
+	        </formitem>
+	        <formitem label="例子">
+	        	<div class="form-control">
+	        		<a href="{:URI_ROUTE($act.$row)}">{:URI_ROUTE($act.$row,true,true)}</a>
+	        	</div>
+	        </formitem>
+		</div>
+		<assign name="row" value="{{row}}" />
+	    <div class="example form-horizontal">
+	    	<formitem label="列表">
+	        	<input class="form-control" type="text" ng-model="rows" ng-list="," />
+	        </formitem>
+        	<div ng-repeat="row in rows">
+				<a href="{:URI_ROUTE($act.$row)}">{:URI_ROUTE($act.$row,true,true)}</a>
+			</div>
+        </div>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>
+网页
+			</pre>
+		</div>
+	</div>
+</div>
+</block>

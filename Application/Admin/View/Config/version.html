@@ -1,0 +1,47 @@
+<h2>版本信息</h2>
+<div class="row-fluid">
+<div class="col-md-12">
+	<panel title="版本信息">
+		<?php
+			$key	= 'version';
+			$row 	= W('Admin/config',array($key));
+		?>
+		<form action="{:U('version')}" ng-controller="save">
+			<input type="hidden" name="key" value="{$key}" />
+	        <item label="应用名称" cols="2|10">
+	        	<col col="3">
+	        		<text name="appname" empty="请输入应用名称" value="{{row.appname|default:'{$row.appname}'}}" />
+	        	</col>
+	        	<col col="2" class="control-label" tag="label">应用包名</col>
+	        	<col col="3">
+	        		<text name="package" empty="请输入应用包名" value="{{row.package|default:'{$row.package}'}}" />
+	        	</col>
+	        </item>
+	        <item label="版本名称" cols="2|10">
+	        	<col col="3">
+	        		<text name="versionname" empty="请输入版本名称" value="{{row.versionname|default:'{$row.versionname}'}}" />
+	        	</col>
+	        	<col col="2" class="control-label" tag="label">版本代码</col>
+	        	<col col="3">
+	        		<text name="versioncode" empty="请输入版本代码" value="{{row.versioncode|default:'{$row.versioncode}'}}" />
+	        	</col>
+	        </item>
+	        <item label="文件大小" cols="2|10">
+	        	<col col="3">
+	        		<text name="size" empty="请输入文件大小" value="{{row.size|sizeFormat|default:'{$row.size}'}}" />
+	        	</col>
+	        	<col col="2" class="control-label" tag="label">文件路径</col>
+	        	<col col="3">
+	        		<input name="path" empty="请上传应用包" value="{$row.path}" class="uploadOne" data="row" />
+	        	</col>
+	        </item>
+	        <item label="文件说明" cols="2|8">
+	        	<textarea class="form-control" name="description" placeholder="请输入版本更新说明">{$row.description}</textarea>
+	        </item>
+	        <buttons offset="2">
+	    		<submit col="2" text="保存" />
+	    	</buttons>
+	    </form>
+	</panel>
+</div>
+</div>

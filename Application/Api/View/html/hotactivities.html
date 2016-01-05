@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>热门活动</title>
+<meta name="viewport" content="initial-scale=1,user-scalable=no">
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<linkcss file="activity" />
+<linkjs file="function" />
+</head>
+<script>
+
+</script>
+<body ng-app="App">
+<section class="container" ng-controller="tosignupController">
+	<div class="image">
+		<img width="100%" src="{$item.image}" />
+		<h3>{$item.name}</h3>
+	</div>
+	<dl class="time">
+		<dt></dt>
+		<dd>
+			活动时间：{$item.starttime}&nbsp;至&nbsp;{$item.endtime}
+		</dd>
+	</dl>
+	<div class="title">活动详情</div>
+	<div class="content">{$item.content}</div>
+</section>
+</body>
+</html>

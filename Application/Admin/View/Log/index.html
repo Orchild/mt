@@ -1,0 +1,73 @@
+<div class="row-fluid">
+	<div class="col-md-12">
+		<div class="pane">
+			<div class="pane-header">
+				<div class="pane-icon">
+					<span class="glyphicon glyphicon-search"></span>
+				</div>
+				<div class="pane-title ng-binding">搜索</div>
+			</div>
+			<div class="form-horizontal">
+				<div class="form-group form-group-sm">
+					<label class="control-label col-md-1">关键字</label>
+					<div class="col-md-3">
+						<div class="input-group">
+							<input class="form-control" placeholder="请输入消息标题"> <span
+								class="input-group-btn">
+								<button class="btn btn-default btn-sm" type="button">
+									<i class="glyphicon glyphicon-search"></i>搜索
+								</button>
+							</span>
+						</div>
+					</div>
+					<button class="btn btn-default btn-sm" type="button">
+						<i class="glyphicon glyphicon-refresh"></i>刷新
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="pane">
+			<div class="pane-header">
+				<div class="pane-icon">
+					<span class="glyphicon glyphicon-list"></span>
+				</div>
+				<div class="pane-title">行为列表</div>
+			</div>
+			<div class="pane" style="position: relative;">
+				<table class="tables table-bordered ng-scope">
+					<thead>
+						<tr>
+							<th class="row-selected row-selected"><input
+								class="check-all" type="checkbox" /></th>
+							<th class="">ID</th>
+							<th class="" width="">行为名称</th>
+							<th class="" width="">执行者</th>
+							<th class="" width="" align="center">执行时间</th>
+							<th class="" width="" align="center">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<notempty name="_list"> <volist name="_list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="ids[]"
+								value="{$vo.id}" /></td>
+							<td>{$vo.id}</td>
+							<td>{:get_action($vo['action_id'],'title')}</td>
+							<td>{:get_nickname($vo['user_id'])}</td>
+							<td><span>{$vo.create_time|time_format}</span></td>
+							<td><a href="{:U('Action/edit?id='.$vo['id'])}">详细</a> <a
+								class="confirm ajax-get"
+								href="{:U('Log/delete?id='.$vo['id'])}">删除</a></td>
+						</tr>
+						</volist> <else />
+						<td colspan="6" class="text-center">aOh! 暂时还没有内容!</td>
+						</notempty>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- 分页 -->
+	{$_page}
+	<!-- /分页 -->
+</div>

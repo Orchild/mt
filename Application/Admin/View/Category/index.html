@@ -1,0 +1,14 @@
+<linkjs file="news" />
+<div class="row-fluid" ng-controller="NewsController">
+<div class="col-md-12">
+	<div class="btn-group btn-group-sm pull-right">
+		<div class="btn btn-default" ng-click="$add()">
+			<i class="glyphicon glyphicon-plus"></i>添加
+		</div>
+		<div class="btn btn-default" ng-click="$lists()">
+			<i class="glyphicon glyphicon-list"></i>列表
+		</div>
+	</div>
+</div>
+<div class="col-md-12" ng-view></div>
+</div>

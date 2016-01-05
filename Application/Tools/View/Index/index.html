@@ -1,0 +1,25 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+<linkjs file="index" />
+</block>
+<block name="body">
+
+<div class="node">
+	<div class="node-tag">功能管理</div>
+	<div class="btn-group">
+		<a href="#add" class="btn btn-default">添加菜单</a>
+		<a href="#lists" class="btn btn-default">菜单列表</a>
+		<a href="#remove" class="btn btn-default">删除菜单</a>
+		<a href="#build" class="btn btn-default">生成菜单</a>
+	</div>
+</div>
+
+<div class="node">
+	<div class="node-tag">后台菜单管理</div>
+	<div ng-view></div>
+</div>
+
+
+</block>

@@ -1,0 +1,19 @@
+<linkjs file="feedback" />
+<h2>{$name}宝贵建议</h2>
+<div class="row-fluid" ng-controller="FeedbackController">
+<div class="col-md-12">
+
+<div class="pane">
+	<div class="pane-header">
+		<div class="pane-icon"><span class="glyphicon glyphicon-user"></span></div>
+		<div class="pane-title">{$name}宝贵建议</div>
+		<!-- <div class="pane-control">
+			<span class="glyphicon glyphicon-refresh"></span>
+			<span class="glyphicon glyphicon-refresh"></span>
+			<span class="fa fa-lg fa-refresh"></span>
+		</div> -->
+	</div>
+	<grid class="tables" cols="[{label:'宝贵建议内容',name:'content'},{label:'时间',type:'time','class':'time',name:'created',width:100},{label:'状态',name:'status',type:'status',width:80,disable:1,items:[[2,'未看|已看']]},{label:'操作',width:60,align:'center',type:'action',items:['delete']}]" items="rows" page="page" goto="$reload" status="$status" remove="$remove" />
+</div>
+</div>
+</div>

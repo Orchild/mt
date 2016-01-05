@@ -1,0 +1,122 @@
+<style type="text/css" media="screen">
+	.head {
+		font-weight: bold;
+	    font-size: x-large;
+	    text-align: center;
+	}
+</style>
+<div class="row-fluid">
+<div class="col-md-12">
+<div class="panel panel-default">
+    <div class="panel-heading">信息统计</div>
+    <table class="table">
+        <tr>
+            <td class="col-sm-2">员工总数</td>
+            <php>
+                $count = M('User')->count();
+            </php>
+            <td class="col-sm-2">{$count} 人</td>
+            <td class="col-sm-2">本月新员工</td>
+            <php>
+            	$month 					= strtotime(date('Y-m',NOW_TIME));
+            	$map['register_time'] 	= array('GT',$month);
+                $count 					= M('User')->where($map)->count();
+            </php>
+            <td class="col-sm-2">{$count} 人</td>
+            <td class="col-sm-2">待认证员工</td>
+            <php>
+            	$map['name_cert'] 		= 0;
+                $count 					= M('UserInfo')->where($map)->count();
+            </php>
+            <td class="col-sm-2">{$count} 人</td>
+        </tr>
+        <tr>
+            <td>消息总数</td>
+            <php>
+                $count = M('Message')->count();
+            </php>
+            <td>{$count} 条</td>
+            <td>本月新增消息</td>
+            <php>
+            	$month 					= strtotime(date('Y-m',NOW_TIME));
+            	$map['created'] 		= array('GT',$month);
+                $count 					= M('Message')->where($map)->count();
+            </php>
+            <td>{$count} 条</td>
+            <td>必读消息数</td>
+            <php>
+            	unset($map);
+            	$map['type'] 			= 1;
+                $count 					= M('Message')->where($map)->count();
+            </php>
+            <td>{$count} 条</td>
+        </tr>
+        <tr>
+            <td>反馈总数</td>
+            <php>
+                $count = M('Feedback')->count();
+            </php>
+            <td>{$count} 条</td>
+            <td>本月新增反馈</td>
+            <php>
+            	$month 					= strtotime(date('Y-m',NOW_TIME));
+            	$map['created'] 		= array('GT',$month);
+                $count 					= M('Feedback')->where($map)->count();
+            </php>
+            <td>{$count} 条</td>
+            <td>未读反馈数目</td>
+            <php>
+            	unset($map);
+            	$map['status'] 			= array('EQ',1);
+                $count 					= M('Feedback')->where($map)->count();
+            </php>
+            <td>{$count} 条</td>
+        </tr>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">快捷入口</div>
+    <table class="table">
+    	<tr>
+            <td class="col-sm-3"><a href="{:U('Message/MsgRead')}">阅读管理</a></td>
+            <td class="col-sm-3"><a href="{:U('Feedback/index')}">查看反馈</a></td>
+            <td class="col-sm-3"><a href="{:U('Message/headmsg')}">置顶消息</a></td>
+        </tr>
+        <tr>
+        	<td class="col-sm-3"><a href="{:U('User/index')}">员工管理</a></td>
+            <td class="col-sm-3"><a href="{:U('Certify/index')}">实名认证</a></td>
+            <td class="col-sm-3"><a href="{:U('Reset/index')}">密码重置</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">系统信息</div>
+    <table class="table">
+        <tr>
+            <td class="col-sm-3">服务器操作系统</td>
+            <td class="col-sm-9">{$Think.const.PHP_OS}</td>
+        </tr>
+        <tr>
+            <td>运行环境</td>
+            <td>{$_SERVER['SERVER_SOFTWARE']}</td>
+        </tr>
+        <tr>
+            <td>MYSQL版本</td>
+            <php>
+                $system_info_mysql = M()->query("select version() as v;");
+            </php>
+            <td>{$system_info_mysql.0.v}</td>
+        </tr>
+        <tr>
+            <td>上传限制</td>
+            <td>{:ini_get('upload_max_filesize')}</td>
+        </tr>
+        <tr>
+            <td>ThinkPHP版本</td>
+            <td>{$Think.VERSION}</td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>

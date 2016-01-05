@@ -1,0 +1,70 @@
+<linkjs file="hotnews" />
+<h2>置顶消息</h2>
+<div class="row-fluid" ng-controller="HotNewsController">
+<div class="col-md-12">
+	<div class="btn-group btn-group-sm pull-right">
+		<div class="btn btn-default" ng-click="$add()">
+			<i class="glyphicon glyphicon-plus"></i>添加
+		</div>
+	</div>
+</div>
+<div class="col-md-12">
+	<div class="pane">
+		<div class="pane-header">
+			<div class="pane-icon"><span class="glyphicon glyphicon-list"></span></div>
+			<div class="pane-title">置顶消息列表</div>
+		</div>
+		<grid class="tables" cols="[
+	{label:'编号',width:50,type:'number',align:'center'},
+	{label:'ID',width:50,name:'id',align:'center'},
+	{label:'图片',width:325,name:'image',type:'upload',align:'center',size:'300x100',url:'/hotupload'},
+	{label:'消息标题',name:'title',type:'browse'},
+	{label:'创建或更新时间',type:'date',class:'time',name:['created','updated'],width:140},
+	{label:'状态',name:'status',type:'status',width:60,items:['启用/禁用']},
+	{label:'操作',width:160,align:'center',name:'id',type:'action',items:['up','down','delete']}
+	]" items="rows" itemcontroller="itemcontroller" browse="$browse" goto="$reload" sort="$sort" status="$status" up="$up" down="$down" remove="$remove" />
+	</div>
+</div>
+</div>
+
+
+<script type="text/ng-template" id="browse.html">
+<div class="modal-inner-content">
+<pane title="搜索" glyp="search">
+	<div class="form-horizontal">
+		<div class="form-group form-group-sm">
+			<label class="control-label col-md-2">消息标题</label>
+			<div class="col-md-6">
+				<div class="input-group">
+					<text ng-model="s.title" empty="请输入消息标题" />
+					<span class="input-group-btn">
+						<button size="2" ng-click="$search()">
+							<i class="glyphicon glyphicon-search"></i>搜索
+						</button>
+					</span>
+				</div>
+			</div>
+			<button size="2" ng-click="$refresh()">
+				<i class="glyphicon glyphicon-refresh"></i>刷新
+			</button>
+		</div>
+	</div>
+</pane>
+<div class="pane">
+	<div class="pane-header">
+		<div class="pane-icon"><span class="glyphicon glyphicon-list"></span></div>
+		<div class="pane-title">{{title}}列表</div>
+	</div>
+			<div style="clear:both;padding:0px;height:350px;overflow-y:scroll">
+<grid class="tables" cols="[
+{label:'编号',width:50,type:'number',align:'center'},
+{label:'ID',width:50,name:'id',align:'center'},
+{label:'图片',width:100,name:'image',type:'image',align:'center'},
+{label:'消息标题',name:'title'},
+{label:'阅读状态',width:80,name:'type',type:'tpl',tpl:'{{item.type|read}}',align:'center'},
+{label:'选择',width:60,align:'center',name:'id',type:'action',items:['select']}
+]" items="rows" page="page" goto="$reload" status="$status" click="$click" />
+			</div>
+		</div>
+</div>
+</script>

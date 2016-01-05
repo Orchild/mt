@@ -1,0 +1,94 @@
+<h2>系统第三方接口设置</h2>
+<div class="row-fluid">
+<div class="col-md-12">
+	<tabs>
+		<tab title="语音/短信验证码接口">
+			<?php
+				$key	= 'sms';
+				$row 	= W('Admin/config',array($key));
+			?>
+			<form action="{:U('index')}" ng-controller="save">
+				<input type="hidden" name="key" value="{$key}" />
+		        <item label="语音接口KEY">
+		            <text name="voice_key" empty="请输入语音接口key" value="{$row.voice_key}" />
+		        </item>
+		        <item label="短信接口KEY">
+		            <text name="sms_key" empty="请输入短信接口KEY" value="{$row.sms_key}" />
+		        </item>
+		        <item label="短信验证内容">
+		            <text name="sms_tpl" empty="请输入短信验内容" value="{$row.sms_tpl}" />
+		        </item>
+		        <buttons offset="3">
+		    		<submit col="2" text="保存" />
+		    	</buttons>
+		    </form>
+		</tab>
+		<tab title="极光推送接口设置">
+			<?php
+				$key	= 'jpush';
+				$row 	= W('Admin/config',array($key));
+			?>
+			<form action="{:U('index')}" ng-controller="save">
+				<input type="hidden" name="key" value="{$key}" />
+		        <item label="App Key">
+		            <text name="app_key" empty="请输入App Key" value="{$row.app_key}" />
+		        </item>
+		        <item label="Master Secret">
+		            <text name="master_secret" empty="请输入Master Key" value="{$row.master_secret}" />
+		        </item>
+		        <item label="通知发送环境">
+		            <select class="form-control" name="apns_production" value="{$row.apns_production}">
+	                    <option value="0">开发环境</option>
+	                    <option value="1">生产环境</option>
+	                </select>
+		        </item>
+		        <buttons offset="3">
+		    		<submit col="2" text="保存" />
+		    	</buttons>
+		    </form>
+		</tab>
+		<!-- <tab title="Android百度推送接口设置">
+			<?php
+				$key	= 'android';
+				$row 	= W('Admin/config',array($key));
+			?>
+			<form action="{:U('index')}" ng-controller="save">
+				<input type="hidden" name="key" value="{$key}" />
+		        <item label="API Key">
+		            <text name="api_key" empty="请输入API Key" value="{$row.api_key}" />
+		        </item>
+		        <item label="Secret Key">
+		            <text name="secret_key" empty="请输入Secret Key" value="{$row.secret_key}" />
+		        </item>
+		        <buttons offset="3">
+		    		<submit col="2" text="保存" />
+		    	</buttons>
+		    </form>
+		</tab>
+		<tab title="IOS百度推送接口设置">
+			<?php
+				$key	= 'ios';
+				$row 	= W('Admin/config',array($key));
+			?>
+			<form action="{:U('index')}" ng-controller="save">
+				<input type="hidden" name="key" value="{$key}" />
+		        <item label="API Key">
+		            <text name="api_key" empty="请输入API Key" value="{$row.api_key}" />
+		        </item>
+		        <item label="Secret Key">
+		            <text name="secret_key" empty="请输入Secret Key" value="{$row.secret_key}" />
+		        </item>
+		        <item label="部署状态">
+		            <select class="form-control" name="deploy_status" value="{$row.deploy_status}">
+	                    <option value="1">开发状态</option>
+	                    <option value="2">生产状态</option>
+	                </select>
+		        </item>
+		        <buttons offset="3">
+		    		<submit col="2" text="保存" />
+		    	</buttons>
+		    </form>
+		</tab> -->
+	</tabs>
+</div>
+</div>

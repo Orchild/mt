@@ -1,0 +1,32 @@
+<pane title="{{action}}消息" glyp="list">
+<ext-form cols="2,6" action="{:U(ACTION_NAME)}" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="消息标题">
+        <ext-form-item-text name="title" empty="请输入消息标题" />
+    </ext-form-item>
+    <ext-form-item label="阅读类型">
+    	<radio-group name="type" index="0">
+	        <radio value="0">非必读</radio>
+	        <radio value="1">必读</radio>
+    	</radio-group>
+    </ext-form-item>
+    <ext-form-item label="分类">
+    	<ext-form-item-dropdown name="msg_cat" items="category" key="key" val="val" empty="请选择消息类型" />
+    </ext-form-item>
+    <ext-form-item label="消息图片">
+        <ext-form-item-upload name="image" empty="请上传消息图片" size="100x100" />
+    </ext-form-item>
+    <ext-form-item label="消息视频">
+        <ext-form-item-textarea name="video" empty="请输入消息视频" />
+    </ext-form-item>
+    <ext-form-item label="消息简介">
+        <ext-form-item-textarea name="remark" empty="请输入消息简介" />
+    </ext-form-item>
+    <ext-form-item label="消息内容">
+        <ext-form-item-ueditor name="content" empty="请输入消息内容" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit col="2" text="保存" />
+        <button col="2" ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

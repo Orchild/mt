@@ -1,0 +1,122 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+<script type="text/javascript"></script>
+</block>
+<block name="body">
+
+<div class="node">
+	<div class="node-tag">消息API功能管理</div>
+	<div class="btn-group">
+		<a href="#headmsg" class="btn btn-default">头部消息列表接口</a>
+		<a href="#lists" class="btn btn-default">消息列表接口</a>
+		<a href="#details" class="btn btn-default">消息详细接口</a>
+		<a href="#hasRead" class="btn btn-default">我已阅读接口</a>
+	</div>
+</div>
+
+<assign name="id" value="headmsg" />
+<assign name="act" value="Message/headmsg" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">头部消息列表接口</div>
+	<div class="node">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="用户ID">
+	            <inputaddon name="user_id" text="请输入用户ID" addon="user_id" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="node">
+		<div class="node-tag">返回结果</div>
+		<pre>{{result}}</pre>
+	</div>
+</div>
+
+<assign name="id" value="lists" />
+<assign name="act" value="Message/lists" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">消息列表接口</div>
+	<div class="node">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="分页">
+	            <inputaddon name="page" ng-model="formData.page" value="1" text="请输入分页" addon="page" />
+	        </formitem>
+	        <formitem label="用户ID">
+	            <inputaddon name="user_id" text="请输入用户ID" addon="user_id" />
+	        </formitem>
+	        <formitem label="消息类型">
+	            <inputaddon name="type" text="请输入消息类型：0、选读；1、必读。" addon="type" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="node">
+		<div class="node-tag">返回结果</div>
+		<pre>{{result}}</pre>
+	</div>
+</div>
+
+<assign name="id" value="details" />
+<assign name="act" value="message{{row}}" />
+<div class="node form-horizontal" ng-controller="MinMaxUrlController">
+	<div id="{$id}" class="node-tag">消息详细接口</div>
+	<div class="form-group">
+			<label class="col-md-1 control-label">最小值</label>
+			<div class="col-md-1">
+				<input class="form-control" type="text" ng-model="min" />
+			</div>
+			<label class="col-md-1 control-label">最大值</label>
+			<div class="col-md-1">
+				<input class="form-control" type="text" ng-model="max" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-1 control-label">值列表</label>
+			<div class="col-md-11">
+				<input class="form-control" type="text" ng-model="rows" ng-list="," />
+			</div>
+		</div>
+	<div class="example">
+		<div ng-repeat="row in rows">
+			<a href="{:URI_ROUTE($act)}">{:URI_ROUTE($act,true,true)}</a>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="hasRead" />
+<assign name="act" value="Message/hasRead" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">我已阅读接口</div>
+	<div class="node">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="用户ID">
+	            <inputaddon name="user_id" text="请输入用户ID" addon="user_id" />
+	        </formitem>
+	        <formitem label="消息ID">
+	            <inputaddon name="msg_id" text="请输入消息ID" addon="msg_id" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="node">
+		<div class="node-tag">返回结果</div>
+		<pre>{{result}}</pre>
+	</div>
+</div>
+</block>

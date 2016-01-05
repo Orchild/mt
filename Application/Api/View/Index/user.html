@@ -1,0 +1,495 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+</block>
+<block name="body">
+
+<div class="node">
+	<div class="node-tag">用户API功能管理</div>
+	<div class="btn-group">
+		<a href="#verifily" class="btn btn-default">验证码接口</a>
+		<a href="#register" class="btn btn-default">注册接口</a>
+		<a href="#login" class="btn btn-default">登陆接口</a>
+		<a href="#forget" class="btn btn-default">忘记密码接口</a>
+		<a href="#modifypassword" class="btn btn-default">修改密码接口</a>
+		<a href="#modifybinding" class="btn btn-default">修改手机绑定接口</a>
+		<a href="#modify" class="btn btn-default">修改信息接口</a>
+		<a href="#portrait" class="btn btn-default">上传头像接口</a>
+	</div>
+	<hr/>
+	<div class="btn-group">
+		<a href="#category" class="btn btn-default">用户群组</a>
+		<a href="#version" class="btn btn-default">版本更新</a>
+	</div>
+</div>
+
+<assign name="id" value="verifily" />
+<assign name="act" value="User/verifily" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">验证码接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="注册手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="忘记密码手机号码">
+	            <inputaddon name="forget" text="请输入手机号码" addon="forget" />
+	        </formitem>
+	        <formitem label="验证码类型">
+	            <inputaddon name="type" text="请输入类型：1、短信验证码；2、语音验证码。" addon="type" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="register" />
+<assign name="act" value="User/register" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">注册接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="login" />
+<assign name="act" value="User/login" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">登陆接口</div>
+	<div class="node">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <div class="input-group">
+	            	<span class="input-group-addon">username</span>
+	            	<input class="form-control" type="text" name="username" ng-model="row.username" placeholder="请输入手机号码" />
+	            </div>
+	        </formitem>
+	        <formitem label="密码">
+	        	<div class="input-group">
+	            	<span class="input-group-addon">password</span>
+	            	<input class="form-control" name="password" ng-model="row.password" placeholder="请输入密码" />
+	            </div>
+	        </formitem>
+	        <formitem label="系统类型">
+	            <div class="input-group">
+	            	<span class="input-group-addon">app_os</span>
+	            	<input class="form-control" type="text" name="app_os" ng-model="row.app_os" placeholder="请输入系统：0安卓；1苹果" />
+	            </div>
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+</div>
+
+<assign name="id" value="forget" />
+<assign name="act" value="User/forget" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">忘记密码接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="新密码">
+	            <inputaddon name="password" text="请输入新密码" addon="password" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="modifypassword" />
+<assign name="act" value="User/modifypassword" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">修改密码接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="旧密码">
+	            <inputaddon name="password" text="请输入旧密码" addon="password" />
+	        </formitem>
+	        <formitem label="新密码">
+	            <inputaddon name="newpassword" text="请输入新密码" addon="newpassword" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="modifybinding" />
+<assign name="act" value="User/modifybinding" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">修改手机绑定接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="新手机号码">
+	            <inputaddon name="telphone" text="请输入新手机号码" addon="telphone" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="modify" />
+<assign name="act" value="User/modify" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">修改信息接口</div>
+	<div class="node">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="昵称">
+	            <inputaddon name="nickname" text="请输入昵称" addon="nickname" />
+	        </formitem>
+	        <formitem label="性别">
+	            <inputaddon name="sex" text="请输入性别  0:男，1:女" addon="sex" />
+	        </formitem>
+	        <formitem label="生日">
+	            <inputaddon name="birthday" text="请输入生日:2000-12-12" addon="birthday" />
+	        </formitem>	        
+	        <formitem label="公司">
+	            <inputaddon name="company" text="请输所在单位" addon="company" />
+	        </formitem>
+	        <formitem label="email">
+	            <inputaddon name="email" text="请输入email" addon="email" />
+	        </formitem>
+	        <formitem label="备用电话">
+	            <inputaddon name="alternative_phone" text="请输入备用电话" addon="alternative_phone" />
+	        </formitem>
+	        <formitem label="真实姓名">
+	            <inputaddon name="realname" text="请输入真实姓名" addon="realname" />
+	        </formitem>
+	        <formitem label="身份证号">
+	            <inputaddon name="id_number" text="请输入身份证号码" addon="id_number" />
+	        </formitem>
+	        <formitem label="工作状态">
+	            <inputaddon name="work_status" text="请输入工作状态：0、离职；1、在职" addon="work_status" />
+	        </formitem>
+	        <formitem label="分类">
+	            <inputaddon name="cat_id" text="请输入分类ID" addon="cat_id" />
+	        </formitem>
+	        <formitem label="状态">
+	        	<volist name="status" id="vo">
+	        	<div class="input-group">
+	        		<span class="input-group-addon" style="width: 120px;text-align: left">{$vo}</span>
+	        		<div class="form-control">
+	        			<label><input type="radio" name="{$vo}" value="1" />是</label>
+	        			<label><input type="radio" name="{$vo}" value="0" />否</label>
+	        		</div>
+	        	</div>
+	        	</volist>
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="node">
+		<div class="node-tag">返回结果</div>
+		<pre>{{result}}</pre>
+	</div>
+</div>
+
+<assign name="id" value="portrait" />
+<assign name="act" value="User/portrait" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">上传头像接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}" enctype="multipart/form-data">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="头像">
+	            <div class="input-group">
+	            	<span class="input-group-addon">image</span>
+	            	<input class="form-control" type="file" name="image" value="" placeholder="请输入头像" />
+	            	<span class="input-group-btn">
+	            		<button type="button" class="btn btn-default">上传</button>
+	            	</span>
+	            </div>
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+<!--  
+<assign name="id" value="certify" />
+<assign name="act" value="User/certify" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">实名认证接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="真实姓名">
+	            <inputaddon name="realname" text="请输入真实姓名" addon="realname" />
+	        </formitem>
+	        <formitem label="身份证号">
+	            <inputaddon name="id_number" text="请输入身份证号码" addon="id_number" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+-->
+<assign name="id" value="category" />
+<assign name="act" value="Category/list" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">用户群组接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<!--  
+<assign name="id" value="photo" />
+<assign name="act" value="User/photo" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">上传照片接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}" enctype="multipart/form-data">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="头像">
+	            <div class="input-group">
+	            	<span class="input-group-addon">image</span>
+	            	<input class="form-control" type="file" name="image" value="" placeholder="请输入头像" />
+	            	<span class="input-group-btn">
+	            		<button type="button" class="btn btn-default">上传</button>
+	            	</span>
+	            </div>
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+-->
+<!-- <assign name="id" value="setting" />
+<assign name="act" value="User/setting" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">更改状态接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="手机号码">
+	            <inputaddon name="username" text="请输入手机号码" addon="username" />
+	        </formitem>
+	        <formitem label="密码">
+	            <inputaddon name="password" text="请输入密码" addon="password" />
+	        </formitem>
+	        <formitem label="状态">
+	        	<volist name="status" id="vo">
+	        	<div class="input-group">
+	        		<span class="input-group-addon" style="width: 120px;text-align: left">{$vo}</span>
+	        		<div class="form-control">
+	        			<label><input type="radio" name="{$vo}" value="1" />是</label>
+	        			<label><input type="radio" name="{$vo}" value="0" />否</label>
+	        		</div>
+	        	</div>
+	        	</volist>
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div> -->
+
+<assign name="id" value="version" />
+<assign name="act" value="User/version" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">版本更新接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="版本代码">
+	            <inputaddon name="versionCode" text="请输入版本代码" addon="versionCode" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+<assign name="id" value="delete" />
+<assign name="act" value="User/delete" />
+<div class="node">
+	<div id="{$id}" class="node-tag">删除数据</div>
+	<div class="node item form-horizontal" ng-controller="submitController">
+		<div class="node-tag">删除数据</div>
+		<div class="alert" ng-class="error.cls" ng-show="error">
+	        <span class="glyphicon glyphicon-exclamation-sign"></span>
+	        <span class="sr-only">Error:</span>
+	        <span class="text">{{error.msg}}</span>
+	    </div>
+	    <form action="{:ROUTE($act)}">
+	        <formitem label="手机号码">
+	        	<input class="form-control" type="text" name="username" ng-model="row.username" placeholder="请输入手机号码" />
+	        </formitem>
+	        <formnode col="10" offset="3" class="btn-group">
+	        	<submit type="button" class="col-md-3" ng-click="save()" value="删除" />
+	        </formnode>
+	    </form>
+	</div>
+</div>
+</block>

@@ -1,0 +1,20 @@
+<pane title="{{action}}管理员密码" glyp="list">
+<ext-form cols="2,3" action="{:U(ACTION_NAME)}" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="管理员名称">
+        <ext-form-item-static name="username" empty="请输入管理员名称" />
+    </ext-form-item>
+    <ext-form-item label="旧密码">
+        <ext-form-item-text type="password" name="oldpassword" empty="请输入旧密码" />
+    </ext-form-item>
+    <ext-form-item label="新密码">
+        <ext-form-item-text type="password" name="password" empty="请输入新密码" />
+    </ext-form-item>
+    <ext-form-item label="确认新密码">
+        <ext-form-item-text type="password" name="repassword" empty="请输入确认新密码" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit text="保存" />
+        <button ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

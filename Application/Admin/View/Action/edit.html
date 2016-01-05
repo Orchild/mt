@@ -1,0 +1,29 @@
+<pane title="{{action}}行为" glyp="list">
+<ext-form cols="2,6" action="{:U(ACTION_NAME)}" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="行为标识">
+        <ext-form-item-text name="name" empty="请输入行为标识" />
+    </ext-form-item>
+    <ext-form-item label="行为名称">
+        <ext-form-item-text name="title" empty="请输入行为名称" />
+    </ext-form-item>
+    <ext-form-item label="行为类型">
+    	<radio-group name="type" index="0">
+	        <radio value="2">系统</radio>
+	        <radio value="1">用户</radio>
+    	</radio-group>
+    </ext-form-item>
+    <ext-form-item label="行为描述">
+        <ext-form-item-textarea name="remark" empty="请输入行为描述" />
+    </ext-form-item>
+    <ext-form-item label="行为规则">
+        <ext-form-item-textarea name="rule" empty="请输入行为规则" />
+    </ext-form-item>
+    <ext-form-item label="日志规则">
+        <ext-form-item-textarea name="log" empty="请输入日志规则" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit col="2" text="保存" />
+        <button col="2" ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

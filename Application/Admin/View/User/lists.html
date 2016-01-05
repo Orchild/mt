@@ -1,0 +1,37 @@
+<pane title="搜索" glyp="search">
+	<div class="form-horizontal">
+		<div class="form-group form-group-sm">
+			<label class="control-label col-md-2">关键字</label>
+			<div class="col-md-6">
+				<div class="input-group">
+					<text ng-model="s.username" empty="请输入用户信息：如手机号，姓名，身份证号，单位名称等。" />
+					<span class="input-group-btn">
+						<button size="2" ng-click="$search()">
+							<i class="glyphicon glyphicon-search"></i>搜索
+						</button>
+					</span>
+				</div>
+			</div>
+			<button size="2" ng-click="$refresh()">
+				<i class="glyphicon glyphicon-refresh"></i>刷新
+			</button>
+		</div>
+	</div>
+</pane>
+<div class="pane">
+	<div class="pane-header">
+		<div class="pane-icon"><span class="glyphicon glyphicon-list"></span></div>
+		<div class="pane-title">员工列表</div>
+	</div>
+	<grid class="tables" cols="[
+{label:'编号',width:50,type:'number',align:'center'},
+{label:'真实姓名',name:'realname'},
+{label:'用户手机号',name:'username'},
+{label:'实名认证',type:'tpl',name:'name_cert',align:'center',tpl:'{{item.name_cert|name_cert}}'},
+{label:'登录次数',name:'login_count',align:'center'},
+{label:'最后登录时间',type:'date',class:'time',name:'last_login_time',width:140},
+{label:'注册/更新时间',type:'date',class:'time',name:['register_time','updated'],width:140},
+{label:'状态',name:'status',type:'status',width:60,items:['启用/禁用']},
+{label:'操作',width:110,align:'center',name:'id',type:'action',disable:3,items:['edit','delete']}
+]" items="rows" page="page" goto="$reload" disable="$disable" status="$status" edit="$edit" remove="$remove" />
+</div>

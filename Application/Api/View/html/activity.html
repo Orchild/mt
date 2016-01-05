@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>活动</title>
+<meta name="viewport" content="initial-scale=1,user-scalable=no">
+<linkcss file="activity" />
+<script src="__STATIC__/angularjs/angular.js"></script>
+</head>
+<script>
+
+</script>
+<body ng-app="App">
+<section class="container" ng-controller="tosignupController">
+	<div class="image">
+		<img width="100%" src="{$item.image}" />
+		<h3>{$item.title}</h3>
+	</div>
+	<dl ng-init="has = {$item.has};num = {$item.num};count = {$item.count}" class="people">
+		<dt></dt>
+		<dd>
+			<ul>
+				<li>已报名</li><li>{{num}}人</li>
+				<li>剩余名额</li><li>{{count-num}}人</li>
+			</ul>
+			<form action="{:ROUTE('Activity/tosignup')}">
+				<input ng-init="row.id = {$item.id}" type="hidden" ng-model="row.id" />
+				<input ng-init="row.uid = {$item.uid}" type="hidden" ng-model="row.uid" />
+				<button ng-if="!has" type="button" ng-click="tosignup()">立即报名</button>
+				<a ng-if="has" href="{:URI_ROUTE('tosignup'.$item['id'])}">查看报名成员</a>
+			</form>
+		</dd>
+	</dl>
+	<dl class="time">
+		<dt></dt>
+		<dd>
+			活动时间：{$item.time}
+		</dd>
+	</dl>
+	<dl class="location">
+		<dt></dt>
+		<dd>{$item.address}</dd>
+	</dl>
+	<div class="title">活动详情</div>
+	<div class="content">{$item.content}</div>
+</section>
+</body>
+<linkjs file="activity" />
+<less file="less.js" />
+</html>

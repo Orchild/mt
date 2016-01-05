@@ -1,0 +1,43 @@
+<extend name="Common/layout" />
+<block name="css">
+</block>
+<block name="js">
+</block>
+<block name="body">
+
+<include file="menu" />
+<div class="node">
+	<div class="node-tag">数据字典</div>
+	<ol class="db">
+		<volist name="items" id="vo">
+		<li><h1>{$vo.name}</h1>
+			<h3>字段说明:</h3>
+			<table class="grid">
+				<tr>
+					<th width="50" align="center">编号</th>
+					<th width="150">字段名</th>
+					<th width="200">数据类型</th>
+					<th width="80" align="center">允许空值</th>
+					<th width="60" align="center">主键</th>
+					<th width="60" align="center">默认值</th>
+					<th width="80" align="center">自动递增</th>
+					<th>备注</th>
+				</tr>
+				<volist name="vo[items]" id="v">
+				<tr>
+					<td align="right">{$i}</td>
+					<td>{$v.field}</td>
+					<td>{$v.type}</td>
+					<td align="center">{:IFF($v["null"]=="YES","是","否")}</td>
+					<td align="center">{:IFF($v["key"]=="PRI","是")}</td>
+					<td align="center">{$v.default}</td>
+					<td align="center">{:IFF($v["extra"]=="auto_increment","是")}</td>
+					<td>{$v.comment}</td>
+				</tr>
+				</volist>
+			</table>
+		</li>
+		</volist>
+	</ol>
+</div>
+</block>

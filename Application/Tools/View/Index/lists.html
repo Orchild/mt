@@ -1,0 +1,50 @@
+<tag title="控制器和模型生成">
+    <tag title="生成控制器" class="item">
+        <ext-form cols="3,9" action="{:U('buildController')}">
+            <ext-form-item label="控制器名称">
+                <ext-form-item-text name="name" empty="请输入控制器名称" />
+            </ext-form-item>
+            <ext-form-item label="模块名称">
+                <radio-group name="module" index="2" size="2">
+                    <radio value="Tools">管理后台模块</radio>
+                    <radio value="Admin">后台模块</radio>
+                    <radio value="Home">前台模块</radio>
+                </radio-group>
+            </ext-form-item>
+            <ext-form-buttons>
+                <submit col="6" text="生成" />
+            </ext-form-buttons>
+        </ext-form>
+    </tag>
+    <tag title="生成模型" class="item">
+        <ext-form cols="3,9" action="{:U('buildModel')}">
+            <ext-form-item label="模型名称">
+                <ext-form-item-text name="name" empty="请输入模型名称" />
+            </ext-form-item>
+            <ext-form-item label="模块名称">
+                <radio-group name="module" index="2" size="2">
+                    <radio value="Tools">管理后台模块</radio>
+                    <radio value="Admin">后台模块</radio>
+                    <radio value="Home">前台模块</radio>
+                </radio-group>
+            </ext-form-item>
+            <ext-form-buttons>
+                <submit col="6" text="生成" />
+            </ext-form-buttons>
+        </ext-form>
+    </tag>
+</tag>
+
+<div class="node">
+    <div class="node-tag">后台菜单管理</div>
+    <button offset="1" ng-click="$build()">生成菜单</button>
+    <button offset="1" ng-click="$removeAll()">删除菜单</button>
+</div>
+<div class="node">
+    <div class="node-tag">后台菜单管理</div>
+    <grid cols="[{label:'编号',width:48,type:'number',align:'center'},{label:'菜单名称',width:180,name:'name',type:'badge',items:'items'},{label:'模块名称',name:'module',width:150},{label:'控制器名称',name:'controller',type:'array',sep:', '},{label:'状态',name:'status',type:'status',width:60,items:['启用/禁用']},{label:'操作',width:200,align:'center',name:'id',type:'action',items:[{label:'向上'},{label:'向下'},{label:'编辑'},{label:'删除'}]}]" items="rows" status="$status" up="$up" down="$down" edit="$edit" remove="$remove" />
+</div>
+<div class="node">
+    <div class="node-tag">后台备用菜单管理</div>
+    <grid cols="[{label:'编号',width:48,type:'number',align:'center'},{label:'菜单名称',name:'name',type:'badge',items:'items'},{label:'模块名称',name:'module',width:150},{label:'控制器名称',name:'controller',type:'array',sep:', '},{label:'状态',name:'status',type:'status',width:60,items:['启用/禁用']},{label:'操作',width:200,align:'center',name:'id',type:'action',items:[{label:'向上'},{label:'向下'},{label:'编辑'},{label:'删除'}]}]" items="items" status="$status" up="$up" down="$down" edit="$edit" remove="$remove" />
+</div>

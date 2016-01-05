@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>内容管理</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap-theme.css" />
+<!-- jQuery库 -->
+<!--[if lt IE 9]>
+<script src="__STATIC__/jquery/jquery-1.10.2.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<!--[endif]-->
+<!-- 自定义样式 -->
+<linkcss file="style" />
+<block name="css"></block>
+<!-- 脚本程序 -->
+<script src="__STATIC__/angularjs/angular.js"></script>
+<script src="__STATIC__/angularjs/angular-route.js"></script>
+<script src="__STATIC__/angularjs/angular-resource.js"></script>
+<script src="__STATIC__/angularjs/directive.js"></script>
+<script src="__STATIC__/angularjs/filter.js"></script>
+<script src="__STATIC__/angularjs/ocLazyLoad.js"></script>
+<script src="__STATIC__/global.js"></script>
+<script>
+var $ROOT           = '__ROOT__';
+var $APP			= '__APP__';
+var $MODULE			= '__MODULE__';
+var $CONTROLLER		= '__CONTROLLER__';
+var $STATIC			= '__STATIC__';
+var $JS				= <jspath />;
+</script>
+<linkjs file="main" />
+<block name="js"></block>
+</head>
+<body ng-app="APP" ng-controller="main">
+
+<div class="node">
+	<div class="node-tag">后台管理工具</div>
+	<div class="node">
+		<div class="node-tag">工具菜单</div>
+		<div class="btn-group">
+			<a href="{:U('Index/index')}" class="btn btn-default">后台菜单管理</a>
+			<a href="{:U('Rules/index')}" class="btn btn-default">后台规则管理</a>
+			<a href="{:U('Db/index')}" class="btn btn-default">后台数据管理</a>
+		</div>
+	</div>
+	<block name="body"></block>
+</div>
+<less file="less.js" />
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+<title>注册</title>
+<style>
+	body{margin:0 auto;color:#7b7b7b;}
+	body,button,input {font-family: "Microsoft Yahei";font-size:1em;}
+	.icon-phone{background-image:url(__PUBLIC__/api/img/signin-phone.png);}
+	.icon-code{background-image:url(__PUBLIC__/api/img/signin-code.png);}
+	.icon-password{background-image:url(__PUBLIC__/api/img/signin-password.png);}
+	.icon-repassword{background-image:url(__PUBLIC__/api/img/signin-repassword.png);}
+	input,button{
+		display: block;
+		width:100%;
+		height:45px;
+		padding: 0;
+		border:none;
+		outline: none;
+		box-sizing: border-box;
+	}
+	input:focus,button:focus{
+		outline: none;
+	}
+	button{
+		color:#fff;
+		border-radius:4px;
+		background-color:#fb73aa;
+		cursor: pointer;
+	}
+	.login_info > form{
+		padding: 5px 10px;
+	}
+	.login_info > form >div:not(#login){
+		margin:10px 0;
+		padding-left: 50px;
+		border:2px solid #E5E5E5;
+		border-radius:5px;
+		overflow:hidden;
+		position: relative;
+	}
+	.login_info > form >div:not(#login).focus{
+		border-color: #52ec5c;
+	}
+	.login_info > form >div:not(#login).error{
+		border-color: red;
+	}
+	.login_info > form >div#code{
+		padding-right: 120px;
+	}
+	.login_info > form >div#code>button{
+		width: 120px;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.login_info > form >div#code>button[disabled]{
+		background-color: #CCC;
+	}
+	.login_info > form >div:not(#login)>b{
+		display: block;
+		width:40px;
+		height:47px;
+		background-repeat:no-repeat;
+		background-size:40px 47px;
+		position: absolute;
+		left: 2px;
+	}
+</style>
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<linkjs file="function" />
+</head>
+<body ng-app>
+<div>
+	<div class="login_info">
+		<form action="" method="post" ng-controller="userreg">
+			<div id="phone">
+				<b class="icon icon-phone"></b>
+				<input type="text" name="username" maxlength="11" placeholder="手机号" />
+			</div>
+			<div id="code">
+				<b class="icon icon-code"></b>
+				<input type="text" name="code" maxlength="6" placeholder="验证码" />
+				<button type="button" id="getCode">获取验证码</button>
+			</div>
+			<div id="password">
+				<b class="icon icon-password"></b>
+				<input type="password" name="password" maxlength="16" placeholder="密码"/>
+			</div>
+			<div id="repassword">
+				<b class="icon icon-repassword"></b>
+				<input type="password" name="repassword" maxlength="16" placeholder="确认密码" />
+			</div>
+			<div id="login">
+				<button type="button">注册</button>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+function getcodetime(second,callback){
+	var fn 	= arguments.callee;
+	$('#getCode').text('获取验证码('+second+')');
+	if(second>0)
+		setTimeout(function(){
+			fn(--second,callback);
+		},1000);
+	else{
+		$('#getCode').attr('disabled',false);
+		$('#getCode').text('获取验证码');
+		callback();
+	}
+}
+$(function(){
+	var verifily	= "";
+	$('#getCode').click(function(){
+		var phone 	= $(':input[name=username]').val();
+		if(!/^.+$/.test(phone)){
+			alert("请输入手机号")
+			$(':input[name=username]').data('error',true).focus();
+			return;
+		}
+		if(!/^1\d{10}$/.test(phone)){
+			alert("请输入正确的手机号")
+			$(':input[name=username]').data('error',true).focus();
+			return;
+		}
+		$.post("{:ROUTE('User/verifily')}",{'username':phone},function(data){
+			if(data.code == 200){
+				alert(data.msg)
+				verifily 	= data.result;
+				$(':input[name=phone]').attr('readonly',true);
+				$('#getCode').attr('disabled',true);
+				$(':input[name=code]').focus().val('');
+				getcodetime(60,function(){
+					verifily = '';
+				});
+			}else{
+				alert(data.msg)
+			}
+		});
+	});
+	$('#login>button').click(function(){
+		var json = params($('form').serializeArray());
+		if(!/^.+$/.test(json.username)){
+			alert("请输入手机号")
+			$(':input[name=username]').data('error',true).focus();
+			return;
+		}
+		if(!/^1\d{10}$/.test(json.username)){
+			alert("请输入正确的手机号")
+			$(':input[name=username]').data('error',true).focus();
+			return;
+		}
+		if(!/^.+$/.test(json.code)){
+			alert("请输入验证码")
+			$(':input[name=code]').data('error',true).focus();
+			return;
+		}
+		if(verifily != json.code){
+			alert("验证码错误");
+			$(':input[name=code]').data('error',true).focus();
+			return;
+		}
+		if(!/^.+$/.test(json.password)){
+			alert("请输入密码")
+			$(':input[name=password]').data('error',true).focus();
+			return;
+		}
+		if(!/^.{6,}$/.test(json.password)){
+			alert("密码最少要6位")
+			$(':input[name=password]').data('error',true).focus();
+			return;
+		}
+		if(!/^.+$/.test(json.repassword)){
+			alert("请输入确认密码")
+			$(':input[name=repassword]').data('error',true).focus();
+			return;
+		}
+		if(!/^.{6,}$/.test(json.repassword)){
+			alert("确认密码最少要6位")
+			$(':input[name=repassword]').data('error',true).focus();
+			return;
+		}
+		if(json.password != json.repassword){
+			alert("确认密码输入错误")
+			$(':input[name=repassword]').data('error',true).focus();
+			return;
+		}
+		$.post("{:ROUTE('User/register')}",{
+			'username':json.username,
+			'password':json.password
+		},function(data){
+			if(data.code == 200){
+				alert(data.msg);
+			}else{
+				alert(data.msg);
+			}
+		});
+	});
+	$(':input:not(:button)').focus(function(){
+		if($(this).data('error')){
+			$(this).parent().addClass('error');
+		}
+		$(this).parent().addClass('focus');
+	}).blur(function(){
+		$(this).parent().removeClass('focus').removeClass('error');
+		$(this).data('error',false);
+	});
+});
+</script>
+</html>

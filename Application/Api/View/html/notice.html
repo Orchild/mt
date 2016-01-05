@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>员工通知</title>
+<meta name="viewport" content="initial-scale=1,user-scalable=no">
+<link rel="stylesheet" href="__STATIC__/bootstrap/bootstrap.css" />
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<linkjs file="function" />
+</head>
+
+<body>
+<section class="container">
+	<h3>{$item.title}</h3>
+	<sup>{$item.updated|time_format}</sup>
+	<div class="content">{$item.content|ImagePath}</div>
+</section>
+</body>
+<script type="text/javascript">
+$(function(){
+	$('.content').loadImage({
+		root : '__ROOT__/'
+	});
+});
+</script>
+</html>

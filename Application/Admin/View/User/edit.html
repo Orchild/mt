@@ -1,0 +1,47 @@
+<pane title="{{action}}会员信息" glyp="list">
+<ext-form cols="2,6" action="{:U(ACTION_NAME)}" item="row" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="用户手机号">
+        <ext-form-item-static name="username" />
+    </ext-form-item>
+    <ext-form-item label="昵称">
+        <ext-form-item-text name="info.nickname" empty="请输入昵称" />
+    </ext-form-item>
+    <ext-form-item label="头像">
+        <ext-form-item-upload name="info.portrait" empty="请上传头像" size="100x100" />
+    </ext-form-item>
+    <ext-form-item label="真实姓名">
+        <ext-form-item-text name="info.realname" empty="请输入真实姓名" />
+    </ext-form-item>
+    <ext-form-item label="分类">
+    	<ext-form-item-dropdown name="info.cat_id" items="category" key="key" val="val" empty="请选择分类" />
+    </ext-form-item>
+    <ext-form-item label="性别">
+        <radio-group name="info.sex" index="1">
+            <radio value="0">男</radio>
+            <radio value="1">女</radio>
+        </radio-group>
+    </ext-form-item>
+    <ext-form-item label="年龄">
+        <ext-form-item-day name="info.age" empty="请输入年龄" />
+    </ext-form-item>
+    <ext-form-item label="所在单位">
+        <ext-form-item-text name="info.company" empty="请输入单位名称" />
+    </ext-form-item>
+    <ext-form-item label="邮箱">
+        <ext-form-item-text name="info.email" empty="请输入邮箱" />
+    </ext-form-item>
+    <ext-form-item label="工作状态">
+        <radio-group name="info.work_status" index="0">
+            <radio value="0">离职</radio>
+            <radio value="1">在职</radio>
+        </radio-group>
+    </ext-form-item>
+    <ext-form-item label="备用电话">
+        <ext-form-item-text name="info.alternative_phone" empty="请输入备用电话" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit col="2" text="保存" />
+        <button col="2" ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

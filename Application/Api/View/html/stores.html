@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" name="viewport" />
+<meta content="240" name="MobileOptimized" />
+<meta http-equiv="content-type" content="text/html" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<style>
+	body {font-family: "STXihei";font-size:1em;line-height:2em;color:#7b7b7b;}
+	p {margin:0;padding:0;text-align:justify;}
+	a {text-decoration:none;}
+	ul {margin:0;padding:0;list-style-type:none;}
+	#title p {font-size:1.2em;margin:.8em 0 0 0;color:#000;font-weight:bold;line-height:1.2em;}
+	#title span{font-size:.8em;font-weight:normal;float:right;color:#7b7b7b;}
+	.icon {margin-bottom:-3px;}
+</style>
+<linkjs file="html" />
+<title>门店信息</title>
+</head>
+<body>
+<section>
+
+	<div id="headimg">
+		<img dynsrc="{$item.image|base64_encode}"  />
+	</div>
+
+</section>
+<section>
+	<div>
+		<div id="title">
+			<p>{$item.name}<span><img class="icon" width="18px" src="__PUBLIC__/api/img/storeinfo-location.png" />500m</span></p>
+		</div>
+		<ul>
+			<li>营业时间：{$item.time}</li>
+			<li>手机号：<a href="tel:{$item.phone}">{$item.phone}</a><img class="icon" width="18px" src="__PUBLIC__/api/img/storeinfo-telephone.png" /></li>
+			<li>价格：{$item.price1}/{$item.price2}/{$item.price3}</li>
+			<li>地址：{$item.address}</li>
+		</ul>
+	</div>
+</section>
+<section>
+	<img center="{$item.longitude},{$item.latitude}" />
+	<p>{$item.content}</p>
+</section>
+</body>
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<linkjs file="function" />
+<script type="text/javascript">
+$(function(){
+	$('#headimg').loadImage({
+		root : '__ROOT__/'
+	});
+	$('body').baiduMap();
+});
+</script>
+</html>

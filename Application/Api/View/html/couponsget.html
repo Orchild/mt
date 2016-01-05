@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" name="viewport" />
+<meta content="240" name="MobileOptimized" />
+<meta http-equiv="content-type" content="text/html" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<style>
+	html{
+		height: 100%;
+	}
+	body{
+		height: 100%;
+		margin: 0;
+		background-color: #FFF;
+	}
+	section{
+		display: block;
+		width: 100%;
+		max-width: 768px;
+		height: 100%;
+		padding: 1px 0;
+		margin: 0 auto;
+		box-sizing: border-box;
+		background-color: #F7822B;
+		cursor: pointer;
+	}
+	img{
+		display:block;
+	}
+</style>
+<title>疯抢优惠劵</title>
+<!-- jQuery库 -->
+<!--[if lt IE 9]>
+<script src="__STATIC__/jquery/jquery-1.11.3.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="__STATIC__/jquery/jquery-2.1.4.js"></script>
+<!--[endif]-->
+</head>
+<body>
+<section>
+	<!-- <a href="{:URI_ROUTE('obtaincoupons'.$uid.'-'.$id)}"> -->
+	<img src="{$image}" alt="优惠券疯抢" width="100%" />
+	<!-- <img src="__PUBLIC__/api/img/coupon-img-0.png" alt="优惠券疯抢" width="100%" /> -->
+	<!-- </a> -->
+</section>
+<script type="text/javascript">
+$(function(){
+	$('section').click(function(){
+		$.getJSON("{:URI_ROUTE('obtaincoupons'.$uid.'-'.$id)}",function(data){
+			alert(data.msg);
+		});
+	});
+	$('section>img').error(function(){
+		$(this).attr('src',"__PUBLIC__/api/img/coupon-img-0.png");
+		fn();
+	});
+	var fn 	= function(){
+		var h1 	= $('section').height();
+		var h2 	= $('section>img').height();
+		$('section img').css('margin-top',(h1-h2)/2);
+	};
+	fn();
+	$(window).resize(fn);
+});
+</script>
+</body>
+</html>

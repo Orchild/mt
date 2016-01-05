@@ -1,0 +1,29 @@
+<extend name="Common/layout" />
+<block name="body">
+
+<assign name="id" value="lists" />
+<assign name="act" value="feedback/index" />
+<div class="node" ng-controller="controller">
+	<div id="{$id}" class="node-tag">投诉建议接口</div>
+	<div class="node left">
+		<div class="node-tag">测试接口</div>
+		<form action="{:ROUTE($act)}">
+			<input type="hidden" name="dump" value="true" />
+	        <formitem label="接口地址">
+	            <inputaddon glyph="link" value="{:ROUTE($act,null,true,true)}" />
+	        </formitem>
+	        <formitem label="投诉建议内容">
+	        	<inputaddon name="content" value="" text="请输入投诉建议内容" addon="content" />
+	        </formitem>
+	        <formsubmit col="3" offset="3" value="确定" />
+	    </form>
+	</div>
+	<div class="right">
+		<div class="node">
+			<div class="node-tag">返回结果</div>
+			<pre>{{result}}</pre>
+		</div>
+	</div>
+</div>
+
+</block>

@@ -1,0 +1,22 @@
+<form ng-submit="save()">
+    <item label="管理员角色权限" cols="2|10">
+        <literal>
+        <ul class="permissions" ng-model="row.rules" checkbox-group-array>
+            <li ng-repeat="v1 in rules">
+                <label><input type="checkbox" ng-model="v1.checked" value="{{v1.id}}" checkbox-all="v1.items.checked" />{{v1.name}}</label>
+                <ul>
+                    <li ng-repeat="v2 in v1.items">
+                        <label><input type="checkbox" ng-model="v2.checked" value="{{v2.id}}" />{{v2.name}}</label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        </literal>
+    </item>
+    <buttons offset="2">
+        <btngroup col="3">
+            <submit col="6" text="保存" />
+            <button col="6" ng-click="$lists()">返回</button>
+        </btngroup>
+    </buttons>
+</form>

@@ -1,0 +1,17 @@
+<pane title="{{action}}管理员" glyp="list">
+<ext-form cols="2,3" action="{:U(ACTION_NAME)}" pk="id" val="{{id}}" route="true">
+    <ext-form-item label="管理员名称">
+        <ext-form-item-static name="username" empty="请输入管理员名称" />
+    </ext-form-item>
+    <ext-form-item label="管理员密码">
+        <ext-form-item-text name="password" empty="请输入管理员密码" />
+    </ext-form-item>
+    <ext-form-item label="管理员角色">
+        <ext-form-item-dropdown name="role_id" empty="请输入管理员角色" items="roles" />
+    </ext-form-item>
+    <ext-form-buttons>
+        <submit text="保存" />
+        <button ng-click="$lists()">返回</button>
+    </ext-form-buttons>
+</ext-form>
+</pane>

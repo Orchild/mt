@@ -1,0 +1,24 @@
+<h2>文本单页</h2>
+<div class="row-fluid">
+<div class="col-md-12">
+	<tabs index="{$index}">
+		<tab title="关于我们">
+			<?php
+				$key	= 'about';
+				$name	= '关于我们';
+				$row 	= W('Admin/basic',array($key));
+			?>
+			<form action="{:U('index')}" ng-controller="save">
+				<input type="hidden" name="key" value="{$key}" />
+				<input type="hidden" name="name" value="{$name}" />
+		        <item label="内容" cols="1|11">
+		        	<textarea class="ueditor" name="content">{$row.content}</textarea>
+		        </item>
+		        <buttons offset="1">
+		    		<submit col="2" text="保存" />
+		    	</buttons>
+		    </form>
+		</tab>
+	</tabs>
+</div>
+</div>

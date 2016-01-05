@@ -1,0 +1,38 @@
+<pane title="搜索" glyp="search">
+	<div class="form-horizontal">
+		<div class="form-group form-group-sm">
+			<label class="control-label col-md-1">消息类型</label>
+			<div class="col-md-3">
+				<div class="input-group">
+					<text ng-model="s.title" empty="请输入关键字" />
+					<span class="input-group-btn">
+						<button size="2" ng-click="$search()">
+							<i class="glyphicon glyphicon-search"></i>搜索
+						</button>
+					</span>
+				</div>
+			</div>
+			<button size="2" ng-click="$initsort()">
+				<i class="glyphicon glyphicon-sort-by-order-alt"></i>重置排序
+			</button>
+			<button size="2" ng-click="$refresh()">
+				<i class="glyphicon glyphicon-refresh"></i>刷新
+			</button>
+		</div>
+	</div>
+</pane>
+<div class="pane">
+	<div class="pane-header">
+		<div class="pane-icon"><span class="glyphicon glyphicon-list"></span></div>
+		<div class="pane-title">{{title}}列表</div>
+	</div>
+	<grid class="tables" cols="[
+{label:'编号',width:50,type:'number',align:'center'},
+{label:'ID',width:50,name:'id',align:'center'},
+{label:'分类名称',name:'title'},
+{label:'创建或更新时间',type:'date',class:'time',name:['created','updated'],width:140},
+{label:'排序',name:'sort',type:'sort',width:110},
+{label:'状态',name:'status',type:'status',width:60,items:['启用/禁用']},
+{label:'操作',width:110,align:'center',name:'id',type:'action',items:['edit','delete']}
+]" items="rows" page="page" goto="$reload" sort="$sort" status="$status" edit="$edit" remove="$remove" />
+</div>
