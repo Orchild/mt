@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+body {font-family: "STXihei";font-size:1em;line-height:2em;color:#7b7b7b;}
+ul{padding:0;}
+#title p {font-size:1.2em;margin:.8em 0 0 0;font-weight:bold;color:#000;line-height:1.2em;font-weight:bold;}
+#date p {margin:.5em 0;}
+#date li{float:left;list-style:none;}
+#date img{width:16px;margin:8px 4px;}
+.click-width{width:20%;color:#DCB63A;}
+.phone-width{width:30%;color:#DCB63A;}
+.date-width{width:30%;}
+#quantity{clear:both;}
+.title{font-size:1.2em;}
+#content {text-align:justify;width:100%;}
+table,td{border:1px solid #7b7b7b;margin:0;}
