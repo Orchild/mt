@@ -111,7 +111,7 @@ class testBehavior extends Behavior{
 		`operation_time` int(10) NOT NULL DEFAULT '0' COMMENT '操作时间',
 		PRIMARY KEY (`operation_log`),
 		KEY `index_uid_node` (`operation_uid`,`operation_node`,`operation_log`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='@author PHP@妖孽\r\n@since 2014-5-4'";
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin";
 		$db->execute($sql);
 	}
 	
