@@ -185,6 +185,10 @@ class testBehavior extends Behavior{
 		}
 	}
 	
+	public function testDev(){
+		
+	}
+	
 	public function __destruct(){
 		$this->operation_on=false;
 		$this->error ='';
