@@ -72,7 +72,7 @@ Class Tag extends Common{
     /* 表单 */
     public function _form($tag,$content){
         $tag['method']  = !empty($tag['method'])?$tag['method']:'POST';
-        $error  = '<div class="col-md-12" ng-if="alert" ng-class="alert.cls" style="padding:8px 10px;">'
+        $error  = '<div class="col-md-12" ng-if="alert" ng-class="alert.cls" style="padding:8px 10px;margin:8px 0;">'
             .'<span class="glyphicon glyphicon-exclamation-sign"></span>'
             .'<span class="sr-only">Error:</span>'
             .'<span class="text">{{alert.msg}}</span></div>';
